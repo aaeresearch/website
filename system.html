@@ -44,6 +44,7 @@ h1 span{color:#fff;text-shadow:0 0 40px rgba(255,255,255,.5)}
 .scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.5}
 .scroll-hint span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
 .scroll-arrow{width:18px;height:18px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);animation:bounce 1.6s ease-in-out infinite}
+@keyframes splashDot{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
 @keyframes bounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(5px)}}
 
 /* SECTIONS */
@@ -94,10 +95,17 @@ h2{font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-wei
 .btn-primary{background:#fff;color:var(--navy);padding:14px 36px;border-radius:8px;font-weight:700;font-size:14px;letter-spacing:.5px;text-decoration:none;display:inline-block;transition:transform .2s,box-shadow .2s}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,255,255,.15)}
 
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s}
+.mobile-menu{display:none;position:fixed;inset:0;top:83px;background:rgba(5,13,71,.97);backdrop-filter:blur(16px);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-size:22px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.mobile-menu a:hover{color:var(--gold)}
 @media(max-width:900px){
   nav .nav-links{display:none}
   .specs-grid{grid-template-columns:1fr 1fr}
   .feature-row,.feature-row.reverse{grid-template-columns:1fr;direction:ltr}
+  .hamburger{display:flex}
 }
 @media(max-width:600px){
   .specs-grid{grid-template-columns:1fr}
@@ -134,8 +142,8 @@ h2{font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-wei
   </a>
   <ul class="nav-links">
     <li><a href="index.html#vision">Vision</a></li>
-    <li><a href="system.html" class="active" style="color:#fff">System</a></li>
-    <li><a href="drivamo.html">Evaluation Platform</a></li>
+    <li><a href="system.html" class="active" style="color:#fff">Systems</a></li>
+    <li><a href="drivamo.html">Evaluation</a></li>
     <li><a href="index.html#why">Why AAER</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
@@ -143,14 +151,65 @@ h2{font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-wei
     <span class="nav-cta-dot"></span>
     Drivamo Platform
   </a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#vision" onclick="closeMobile()">Vision</a>
+  <a href="system.html" onclick="closeMobile()">Systems</a>
+  <a href="drivamo.html" onclick="closeMobile()">Evaluation</a>
+  <a href="index.html#why" onclick="closeMobile()">Why AAER</a>
+  <a href="contact.html" onclick="closeMobile()">Contact</a>
+  <a href="https://drivamo.com/dashboard" target="_blank" style="color:var(--gold)">Drivamo Platform</a>
+</div>
 
 <!-- HERO -->
 <div class="hero">
-  <video autoplay muted loop playsinline preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0">
+  <video autoplay muted loop playsinline preload="auto" id="hero-video" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity 1s ease">
+    <source src="https://raw.githubusercontent.com/aaeresearch/aaer-assets/main/Truckweather.mp4" type="video/mp4">
+  </video>
+  <!-- Loading splash -->
+  <div id="hero-splash" style="position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,#020820 0%,#050D47 60%,#0a1560 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;transition:opacity .8s ease">
+    <svg height="48" width="auto" viewBox="0 0 4396.5 8503.9" xmlns="http://www.w3.org/2000/svg">
+      <g transform="matrix(1,0,0,1,-700.692,-781.75)">
+        <g transform="matrix(1.23495,0,0,1.23495,-401.112,-155.713)">
+          <g transform="matrix(1,0,0,1,44.3296,-37.3431)">
+            <path fill="#ffffff" fill-rule="evenodd" clip-rule="evenodd" d="M3813.5,4386.6c230.4,0,417.4-187,417.4-417.5c0-230.4-187-417.4-417.4-417.4h-917.4v-86.9h917.4c278.4,0,504.4,226,504.4,504.4c0,270.8-213.9,492-481.7,503.9l570.9,530.7h-127.7L3709,4473.5v-86.9H3813.5z"/>
+          </g>
+          <g transform="matrix(1.20099,0,0,1,-391.881,-37.3431)">
+            <rect fill="#4AB5CE" fill-rule="evenodd" clip-rule="evenodd" x="2946.5" y="4386.6" width="319.4" height="86.9"/>
+          </g>
+          <g transform="matrix(1.10093,0,0,1,-185.656,-37.3431)">
+            <rect fill="#ffffff" fill-rule="evenodd" clip-rule="evenodd" x="2839.5" y="4926.9" width="851.5" height="86.9"/>
+          </g>
+          <g transform="matrix(1,0,0,1,-13.329,5.75143)">
+            <path fill="#ffffff" fill-rule="evenodd" clip-rule="evenodd" d="M2163.1,4430.4l-266.8,530.2l-96.9-1.4l774-1537.6l380.4,747.9l-97.1,0.9c0,0-180.9-355.8-282.9-556.2l-367,729.2h251.4v86.9H2163.1z"/>
+          </g>
+          <g transform="matrix(1,0,0,1,-441.732,5.75143)">
+            <path fill="#ffffff" fill-rule="evenodd" clip-rule="evenodd" d="M1697.6,4430.4l-266.8,530.2l-96.9-1.4l774-1537.6l380.4,747.9l-97.1,0.9c0,0-180.9-355.8-282.9-556.2l-367,729.2h251.4v86.9H1697.6z"/>
+          </g>
+        </g>
+      </g>
+    </svg>
+    <div style="display:flex;gap:8px;align-items:center">
+      <div style="width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:splashDot 1.2s ease-in-out infinite"></div>
+      <div style="width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:splashDot 1.2s ease-in-out .2s infinite"></div>
+      <div style="width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:splashDot 1.2s ease-in-out .4s infinite"></div>
+    </div>
+  </div>
     <source src="https://raw.githubusercontent.com/aaeresearch/aaer-assets/main/Truckweather.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
+<script>
+const hv=document.getElementById('hero-video');
+const hs=document.getElementById('hero-splash');
+hv.addEventListener('canplay',()=>{
+  hv.style.opacity='1';
+  hs.style.opacity='0';
+  setTimeout(()=>hs.style.display='none',800);
+});
+</script>
   <div class="hero-content">
     <div class="hero-badge">
       <span class="hero-badge-dot"></span>
@@ -317,12 +376,26 @@ h2{font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-wei
   </div>
   <ul style="display:flex;gap:24px;list-style:none">
     <li><a href="index.html#vision" style="font-size:13px;color:var(--muted);text-decoration:none">Vision</a></li>
-    <li><a href="system.html" style="font-size:13px;color:#fff;text-decoration:none">System</a></li>
-    <li><a href="drivamo.html" style="font-size:13px;color:var(--muted);text-decoration:none">Evaluation Platform</a></li>
+    <li><a href="system.html" style="font-size:13px;color:#fff;text-decoration:none">Systems</a></li>
+    <li><a href="drivamo.html" style="font-size:13px;color:var(--muted);text-decoration:none">Evaluation</a></li>
     <li><a href="index.html#why" style="font-size:13px;color:var(--muted);text-decoration:none">Why AAER</a></li>
     <li><a href="contact.html" style="font-size:13px;color:var(--muted);text-decoration:none">Contact</a></li>
   </ul>
 </footer>
 
+<script>
+const hamburger=document.getElementById('hamburger');
+const mobileMenu=document.getElementById('mobileMenu');
+hamburger.addEventListener('click',()=>{
+  mobileMenu.classList.toggle('open');
+  const spans=hamburger.querySelectorAll('span');
+  if(mobileMenu.classList.contains('open')){
+    spans[0].style.transform='rotate(45deg) translate(5px,5px)';
+    spans[1].style.opacity='0';
+    spans[2].style.transform='rotate(-45deg) translate(5px,-5px)';
+  } else {spans.forEach(s=>{s.style.transform='';s.style.opacity='';});}
+});
+function closeMobile(){mobileMenu.classList.remove('open');hamburger.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity='';});}
+</script>
 </body>
 </html>
