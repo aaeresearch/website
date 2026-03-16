@@ -122,6 +122,12 @@ h2{font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-wei
 .doc-chip.lic{background:rgba(6,182,212,.08);color:var(--cyan);border-color:rgba(6,182,212,.25)}
 .doc-chip.med{background:rgba(168,85,247,.08);color:var(--purple);border-color:rgba(168,85,247,.25)}
 .doc-chip .material-icons{font-size:14px}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s}
+.mobile-menu{display:none;position:fixed;inset:0;top:83px;background:rgba(5,13,71,.97);backdrop-filter:blur(16px);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-size:22px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.mobile-menu a:hover{color:var(--gold)}
 @media(max-width:900px){
   .intro-grid,.two-col{grid-template-columns:1fr}
   .feature-blocks{grid-template-columns:1fr 1fr}
@@ -129,6 +135,7 @@ h2{font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-wei
   .cat-header,.sub-row{grid-template-columns:1fr auto}
   .cat-desc,.sub-desc{display:none}
   .driver-docs{margin-left:0}
+  .hamburger{display:flex}
 }
 @media(max-width:600px){
   .score-grid{grid-template-columns:1fr 1fr}
@@ -166,8 +173,8 @@ h2{font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-wei
   </a>
   <ul class="nav-links">
     <li><a href="index.html#vision">Vision</a></li>
-    <li><a href="system.html">System</a></li>
-    <li><a href="drivamo.html" class="active" style="color:#fff">Evaluation Platform</a></li>
+    <li><a href="system.html">Systems</a></li>
+    <li><a href="drivamo.html" class="active" style="color:#fff">Evaluation</a></li>
     <li><a href="index.html#why">Why AAER</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
@@ -175,7 +182,18 @@ h2{font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-wei
     <span class="nav-cta-dot"></span>
     Open Platform
   </a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#vision" onclick="closeMobile()">Vision</a>
+  <a href="system.html" onclick="closeMobile()">Systems</a>
+  <a href="drivamo.html" onclick="closeMobile()">Evaluation</a>
+  <a href="index.html#why" onclick="closeMobile()">Why AAER</a>
+  <a href="contact.html" onclick="closeMobile()">Contact</a>
+  <a href="https://drivamo.com/dashboard" target="_blank" style="color:var(--gold)">Drivamo Platform</a>
+</div>
 
 <!-- HERO -->
 <div class="page-hero">
@@ -489,14 +507,26 @@ h2{font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-wei
   </div>
   <ul style="display:flex;gap:24px;list-style:none">
     <li><a href="index.html#vision" style="font-size:13px;color:var(--muted);text-decoration:none">Vision</a></li>
-    <li><a href="system.html" style="font-size:13px;color:var(--muted);text-decoration:none">System</a></li>
-    <li><a href="drivamo.html" style="font-size:13px;color:#fff;text-decoration:none">Evaluation Platform</a></li>
+    <li><a href="system.html" style="font-size:13px;color:var(--muted);text-decoration:none">Systems</a></li>
+    <li><a href="drivamo.html" style="font-size:13px;color:#fff;text-decoration:none">Evaluation</a></li>
     <li><a href="index.html#why" style="font-size:13px;color:var(--muted);text-decoration:none">Why AAER</a></li>
     <li><a href="contact.html" style="font-size:13px;color:var(--muted);text-decoration:none">Contact</a></li>
   </ul>
 </footer>
 
 <script>
+const hamburger=document.getElementById('hamburger');
+const mobileMenu=document.getElementById('mobileMenu');
+hamburger.addEventListener('click',()=>{
+  mobileMenu.classList.toggle('open');
+  const spans=hamburger.querySelectorAll('span');
+  if(mobileMenu.classList.contains('open')){
+    spans[0].style.transform='rotate(45deg) translate(5px,5px)';
+    spans[1].style.opacity='0';
+    spans[2].style.transform='rotate(-45deg) translate(5px,-5px)';
+  } else {spans.forEach(s=>{s.style.transform='';s.style.opacity='';});}
+});
+function closeMobile(){mobileMenu.classList.remove('open');hamburger.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity='';});}
 const video=document.getElementById('session-video');
 const fill=document.getElementById('tl-fill');
 const thumb=document.getElementById('tl-thumb');
