@@ -126,11 +126,18 @@ strong{color:var(--text)}
 
 .gradient-line{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);margin:0 5%}
 
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s}
+.mobile-menu{display:none;position:fixed;inset:0;top:83px;background:rgba(5,13,71,.97);backdrop-filter:blur(16px);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-size:22px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.mobile-menu a:hover{color:var(--gold)}
 @media(max-width:900px){
   .vision-grid,.contact-inner,.why-grid{grid-template-columns:1fr}
   .bento-grid{grid-template-columns:1fr 1fr}
   nav .nav-links{display:none}
   .cursor-follower{display:none}
+  .hamburger{display:flex}
 }
 @media(max-width:600px){
   .form-row{grid-template-columns:1fr}
@@ -173,8 +180,8 @@ strong{color:var(--text)}
   </a>
   <ul class="nav-links">
     <li><a href="#vision">Vision</a></li>
-    <li><a href="system.html">System</a></li>
-    <li><a href="drivamo.html">Evaluation Platform</a></li>
+    <li><a href="system.html">Systems</a></li>
+    <li><a href="drivamo.html">Evaluation</a></li>
     <li><a href="#why">Why AAER</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
@@ -182,7 +189,18 @@ strong{color:var(--text)}
     <span class="nav-cta-dot"></span>
     Drivamo Platform
   </a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#vision" onclick="closeMobile()">Vision</a>
+  <a href="system.html" onclick="closeMobile()">Systems</a>
+  <a href="drivamo.html" onclick="closeMobile()">Evaluation</a>
+  <a href="#why" onclick="closeMobile()">Why AAER</a>
+  <a href="contact.html" onclick="closeMobile()">Contact</a>
+  <a href="https://drivamo.com/dashboard" target="_blank" style="color:var(--gold)">Drivamo Platform</a>
+</div>
 
 <script>
 (function(){
@@ -404,8 +422,8 @@ strong{color:var(--text)}
   </div>
   <ul style="display:flex;gap:24px;list-style:none">
     <li><a href="#vision" style="font-size:13px;color:var(--muted);text-decoration:none">Vision</a></li>
-    <li><a href="system.html" style="font-size:13px;color:var(--muted);text-decoration:none">System</a></li>
-    <li><a href="drivamo.html" style="font-size:13px;color:var(--muted);text-decoration:none">Evaluation Platform</a></li>
+    <li><a href="system.html" style="font-size:13px;color:var(--muted);text-decoration:none">Systems</a></li>
+    <li><a href="drivamo.html" style="font-size:13px;color:var(--muted);text-decoration:none">Evaluation</a></li>
     <li><a href="index.html#why" style="font-size:13px;color:var(--muted);text-decoration:none">Why AAER</a></li>
     <li><a href="contact.html" style="font-size:13px;color:var(--muted);text-decoration:none">Contact</a></li>
   </ul>
