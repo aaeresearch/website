@@ -25,7 +25,7 @@ body{background:var(--navy);color:var(--text);font-family:'Work Sans',sans-serif
 .cursor-follower-text{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff;white-space:nowrap;background:rgba(5,13,71,.8);border:1px solid rgba(255,255,255,.15);padding:6px 13px;border-radius:100px;backdrop-filter:blur(8px)}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:21px 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(5,13,71,0.85);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.08);overflow:visible}
+nav{position:fixed;top:0;left:0;right:0;z-index:101;padding:21px 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(5,13,71,0.85);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.08);overflow:visible}
 .logo{display:flex;align-items:center;text-decoration:none;height:41px;overflow:visible}
 .logo svg{height:166px;width:auto;display:block;flex-shrink:0}
 .nav-links{display:flex;gap:37px;list-style:none}
@@ -34,6 +34,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:21px 5%;display:flex
 .nav-cta{display:flex;align-items:center;gap:9px;background:#fff;color:var(--navy);padding:10px 25px;border-radius:6px;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;transition:background .2s,color .2s}
 .nav-cta:hover{background:var(--gold);color:var(--navy)}
 .nav-cta-dot{width:8px;height:8px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;z-index:102}
+.hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s}
+.mobile-menu{display:none;position:fixed;inset:0;top:0;padding-top:83px;background:rgba(5,13,71,.98);backdrop-filter:blur(16px);z-index:100;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-size:22px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.mobile-menu a:hover{color:var(--gold)}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:120px 5% 80px}
@@ -51,9 +59,6 @@ h1{font-family:'Montserrat',sans-serif;font-size:clamp(38px,6vw,72px);font-weigh
 @keyframes charge{0%{width:0}100%{width:100%}}
 h1 .accent{color:var(--gold);position:relative;display:inline-block;transition:text-shadow .3s;animation:breathe 4s ease-in-out infinite}
 @keyframes breathe{0%,100%{opacity:1}50%{opacity:.82}}
-h1 .accent::before{content:'';position:absolute;inset:-8px -20px;background:radial-gradient(ellipse,rgba(5,15,80,.7) 0%,transparent 70%);border-radius:50%;opacity:0;transition:opacity .3s;pointer-events:none;z-index:-1}
-h1 .accent:hover{text-shadow:0 0 40px rgba(5,15,80,.9),0 0 90px rgba(3,10,60,.6)}
-h1 .accent:hover::before{opacity:1}
 .hero-sub{font-size:clamp(15px,2vw,19px);color:var(--muted);max-width:600px;margin:0 auto 44px;line-height:1.7}
 .btn-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .btn-primary-white{background:#fff;color:var(--navy);padding:14px 32px;border-radius:8px;font-weight:700;font-size:14px;letter-spacing:.5px;text-decoration:none;transition:transform .2s,box-shadow .2s}
@@ -126,16 +131,10 @@ strong{color:var(--text)}
 
 .gradient-line{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);margin:0 5%}
 
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
-.hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s}
-.mobile-menu{display:none;position:fixed;inset:0;top:83px;background:rgba(5,13,71,.97);backdrop-filter:blur(16px);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:32px}
-.mobile-menu.open{display:flex}
-.mobile-menu a{color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-size:22px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
-.mobile-menu a:hover{color:var(--gold)}
 @media(max-width:900px){
   .vision-grid,.contact-inner,.why-grid{grid-template-columns:1fr}
-  .bento-grid{grid-template-columns:1fr 1fr}
   nav .nav-links{display:none}
+  nav .nav-cta{display:none}
   .cursor-follower{display:none}
   .hamburger{display:flex}
 }
@@ -193,6 +192,7 @@ strong{color:var(--text)}
     <span></span><span></span><span></span>
   </button>
 </nav>
+
 <div class="mobile-menu" id="mobileMenu">
   <a href="#vision" onclick="closeMobile()">Vision</a>
   <a href="system.html" onclick="closeMobile()">Systems</a>
@@ -277,7 +277,7 @@ strong{color:var(--text)}
         <span class="pill pill-cyan">AI Instructor</span>
         <span class="pill pill-blue">Fleet Analytics</span>
       </div>
-      <a href="drivamo.html" style="display:inline-flex;align-items:center;gap:10px;margin-top:28px;color:var(--cyan);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;transition:gap .2s" onmouseover="this.style.gap='14px'" onmouseout="this.style.gap='10px'">
+      <a href="drivamo.html" style="display:inline-flex;align-items:center;gap:10px;margin-top:28px;color:#fff;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;transition:gap .2s" onmouseover="this.style.gap='14px'" onmouseout="this.style.gap='10px'">
         <span style="color:#fff">How do we evaluate drivers?</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -306,7 +306,7 @@ strong{color:var(--text)}
 
 <!-- SIMULATOR SECTION -->
 <section id="platform" style="background:var(--navy);position:relative;overflow:hidden">
-  <img src="https://raw.githubusercontent.com/aaeresearch/aaer-assets/main/1ABABB41-7F46-4725-AB7F-668232E3D0F4_1_105_c.jpeg" alt="AAER Simulator" style="position:absolute;top:0;right:0;height:100%;width:60%;object-fit:cover;object-position:center;display:block;z-index:0">
+  <img src="https://raw.githubusercontent.com/aaeresearch/aaer-assets/main/1ABABB41-7F46-4725-AB7F-668232E3D0F4_1_105_c.jpeg" alt="AAER Simulator" loading="lazy" style="position:absolute;top:0;right:0;height:100%;width:60%;object-fit:cover;object-position:center;display:block;z-index:0">
   <div style="position:absolute;inset:0;background:linear-gradient(90deg,var(--navy) 0%,var(--navy) 38%,rgba(5,13,71,.7) 55%,transparent 100%);z-index:1"></div>
   <div style="max-width:1200px;margin:0 auto;position:relative;z-index:2;padding:96px 0">
     <div class="section-label" style="text-align:left">Simulator Systems</div>
@@ -379,14 +379,14 @@ strong{color:var(--text)}
     </div>
     <div class="contact-form">
       <h3 style="font-family:'Montserrat',sans-serif;font-size:20px;font-weight:700;margin-bottom:24px;color:#fff">Send a Message</h3>
-      <form action="https://formspree.io/f/mkovlakw" method="POST" id="contact-form">
+      <form id="contact-form" onsubmit="return false">
         <div class="form-row">
           <div class="form-group"><input type="text" name="name" placeholder="Your Name" required></div>
           <div class="form-group"><input type="text" name="phone" placeholder="Phone Number"></div>
         </div>
         <div class="form-group"><input type="email" name="email" placeholder="Email Address" required></div>
         <div class="form-group"><textarea name="message" placeholder="How can we help you?"></textarea></div>
-        <button type="submit" class="btn-submit">Send Message →</button>
+        <button type="button" class="btn-submit" id="submit-btn">Send Message →</button>
       </form>
       <p id="form-success" style="display:none;margin-top:16px;color:var(--green);font-size:14px;text-align:center;font-weight:600">✅ Message sent! We'll get back to you shortly.</p>
       <p id="form-error" style="display:none;margin-top:16px;color:var(--red);font-size:14px;text-align:center;font-weight:600">❌ Something went wrong. Please try again or email us directly.</p>
@@ -430,40 +430,54 @@ strong{color:var(--text)}
 </footer>
 
 <script>
+// Hamburger menu
+const hamburger=document.getElementById('hamburger');
+const mobileMenu=document.getElementById('mobileMenu');
+hamburger.addEventListener('click',()=>{
+  mobileMenu.classList.toggle('open');
+  const spans=hamburger.querySelectorAll('span');
+  if(mobileMenu.classList.contains('open')){
+    spans[0].style.transform='rotate(45deg) translate(5px,5px)';
+    spans[1].style.opacity='0';
+    spans[2].style.transform='rotate(-45deg) translate(5px,-5px)';
+  } else {spans.forEach(s=>{s.style.transform='';s.style.opacity='';});}
+});
+function closeMobile(){mobileMenu.classList.remove('open');hamburger.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity='';});}
+
+// Contact form
+document.getElementById('submit-btn').addEventListener('click',async function(){
+  const form=document.getElementById('contact-form');
+  const name=form.querySelector('[name="name"]').value.trim();
+  const email=form.querySelector('[name="email"]').value.trim();
+  if(!name||!email){return;}
+  this.textContent='Sending...';this.disabled=true;
+  try{
+    const res=await fetch('https://formspree.io/f/mkovlakw',{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+    if(res.ok){form.style.display='none';document.getElementById('form-success').style.display='block';}
+    else{throw new Error();}
+  }catch{
+    this.textContent='Send Message →';this.disabled=false;
+    document.getElementById('form-error').style.display='block';
+  }
+});
+
+// Cursor follower
 const follower=document.getElementById('cursorFollower');
 const hero=document.querySelector('.hero');
 let mx=0,my=0,fx=0,fy=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-(function animateCursor(){
-  fx+=(mx-fx)*.12;fy+=(my-fy)*.12;
-  follower.style.left=fx+'px';follower.style.top=fy+'px';
-  requestAnimationFrame(animateCursor);
-})();
+(function animateCursor(){fx+=(mx-fx)*.12;fy+=(my-fy)*.12;follower.style.left=fx+'px';follower.style.top=fy+'px';requestAnimationFrame(animateCursor);})();
 hero.addEventListener('mouseenter',()=>follower.classList.add('visible'));
 hero.addEventListener('mouseleave',()=>follower.classList.remove('visible'));
 
+// Fuel counter
 window.addEventListener('load',function(){
   var el=document.getElementById('fuel-count');
   if(!el) return;
   var done=false;
-  function runCount(){
-    if(done) return;
-    done=true;
-    var s=10,e=27,dur=4800,t0=performance.now();
-    function step(now){
-      var p=Math.min((now-t0)/dur,1);
-      var ease=1-Math.pow(1-p,3);
-      el.textContent=Math.round(s+(e-s)*ease);
-      if(p<1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-  function check(){
-    var r=el.getBoundingClientRect();
-    if(r.top<window.innerHeight&&r.bottom>0) runCount();
-  }
-  window.addEventListener('scroll',check,{passive:true});
-  check();
+  function runCount(){if(done)return;done=true;var s=10,e=27,dur=4800,t0=performance.now();function step(now){var p=Math.min((now-t0)/dur,1);var ease=1-Math.pow(1-p,3);el.textContent=Math.round(s+(e-s)*ease);if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);}
+  function check(){var r=el.getBoundingClientRect();if(r.top<window.innerHeight&&r.bottom>0)runCount();}
+  window.addEventListener('scroll',check,{passive:true});check();
 });
 </script>
 </body>
