@@ -95,14 +95,15 @@ h2{font-family:'Montserrat',sans-serif;font-size:clamp(26px,3.5vw,42px);font-wei
 .btn-primary{background:#fff;color:var(--navy);padding:14px 36px;border-radius:8px;font-weight:700;font-size:14px;letter-spacing:.5px;text-decoration:none;display:inline-block;transition:transform .2s,box-shadow .2s}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,255,255,.15)}
 
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;z-index:101}
 .hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s}
-.mobile-menu{display:none;position:fixed;inset:0;top:83px;background:rgba(5,13,71,.97);backdrop-filter:blur(16px);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mobile-menu{display:none;position:fixed;inset:0;top:0;padding-top:83px;background:rgba(5,13,71,.98);backdrop-filter:blur(16px);z-index:100;flex-direction:column;align-items:center;justify-content:center;gap:32px}
 .mobile-menu.open{display:flex}
 .mobile-menu a{color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-size:22px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
 .mobile-menu a:hover{color:var(--gold)}
 @media(max-width:900px){
   nav .nav-links{display:none}
+  nav .nav-cta{display:none}
   .specs-grid{grid-template-columns:1fr 1fr}
   .feature-row,.feature-row.reverse{grid-template-columns:1fr;direction:ltr}
   .hamburger{display:flex}
@@ -234,21 +235,21 @@ hv.addEventListener('canplay',()=>{
     <p class="body-text" style="text-align:center;max-width:600px;margin:0 auto">Every component of the AAER simulator is engineered to deliver consistent, repeatable conditions — so every driver is assessed on an equal, objective playing field. The system is designed to be transported effortlessly: it requires only an ethernet connection and a standard AC power outlet, and can be assembled or disassembled in minutes — making it ideal for deployment across staffing agencies, logistics hubs, and training centres worldwide.</p>
     <div class="specs-grid">
       <div class="spec-card" style="padding:0;overflow:hidden">
-        <img src="https://raw.githubusercontent.com/aaeresearch/aaer-assets/main/IMG_6970.JPG" alt="Steering Column" style="width:100%;height:220px;object-fit:cover;display:block">
+        <img src="https://raw.githubusercontent.com/aaeresearch/aaer-assets/main/IMG_6970.JPG" alt="Steering Column" loading="lazy" style="width:100%;height:220px;object-fit:cover;display:block">
         <div style="padding:24px">
           <h3 style="margin-bottom:10px">Steering Column</h3>
           <p>Our solution enables the driver to electronically adjust the angle and depth of the real-truck steering wheel. Furthermore, our custom built electronics enables the use of all real-truck steering wheel buttons and levers, including the retarder.</p>
         </div>
       </div>
       <div class="spec-card" style="padding:0;overflow:hidden">
-        <img src="https://raw.githubusercontent.com/aaeresearch/aaer-assets/main/IMG_6981.JPG" alt="Force Feedback" style="width:100%;height:220px;object-fit:cover;display:block">
+        <img src="https://raw.githubusercontent.com/aaeresearch/aaer-assets/main/IMG_6981.JPG" alt="Force Feedback" loading="lazy" style="width:100%;height:220px;object-fit:cover;display:block">
         <div style="padding:24px">
           <h3 style="margin-bottom:10px">Force Feedback</h3>
           <p>Get a sense for the speed and road structure through our custom made force feedback enabled pedals. The gas pedal is a real drive-by-wire one from a semi-truck — so it can't get much more real.</p>
         </div>
       </div>
       <div class="spec-card" style="padding:0;overflow:hidden">
-        <img src="https://raw.githubusercontent.com/aaeresearch/aaer-assets/main/IMG_6978.JPG" alt="Immersive Dashboard" style="width:100%;height:220px;object-fit:cover;display:block">
+        <img src="https://raw.githubusercontent.com/aaeresearch/aaer-assets/main/IMG_6978.JPG" alt="Immersive Dashboard" loading="lazy" style="width:100%;height:220px;object-fit:cover;display:block">
         <div style="padding:24px">
           <h3 style="margin-bottom:10px">Immersive Dashboard</h3>
           <p>Experience informed driving in our simulation with the AAER dashboard. Our simulator offers a tailored display and switches from a real semi-truck — including park brake, warning lights, and headlights knob.</p>
@@ -294,7 +295,7 @@ hv.addEventListener('canplay',()=>{
     </div>
 
     <div style="position:relative;margin:0 -5vw 80px;overflow:hidden;height:580px">
-      <img src="https://raw.githubusercontent.com/aaeresearch/aaer-assets/main/IMG_6983.JPG" alt="AAER Simulator interior" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block">
+      <img src="https://raw.githubusercontent.com/aaeresearch/aaer-assets/main/IMG_6983.JPG" alt="AAER Simulator interior" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block">
       <div style="position:absolute;inset:0;background:linear-gradient(90deg,var(--navy) 0%,transparent 18%,transparent 82%,var(--navy) 100%)"></div>
       <div style="position:absolute;inset:0;background:linear-gradient(180deg,var(--navy) 0%,transparent 20%,transparent 80%,var(--navy) 100%)"></div>
     </div>
